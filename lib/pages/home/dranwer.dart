@@ -84,7 +84,7 @@ class MyDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.language),
-              title: Text('语言'),
+              title: Text('语言(未实现)'),
               onTap: () => Navigator.pushNamed(context, "language"),
             ),
             if (userModel.isLogin)

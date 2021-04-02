@@ -3,8 +3,7 @@ import 'import_common.dart';
 import './pages/login/index.dart';
 import './pages/login/register.dart';
 import './pages/home/index.dart';
-// import './pages/theme/index.dart';
-
+import './pages/listView/listview_index.dart';
 void main() => Global.init().then((e) => runApp(MyApp()));
 
 class MyApp extends StatelessWidget {
@@ -19,8 +18,6 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<ThemeModel>(
         builder: (BuildContext context, themeModel, Widget child) {
-          print(Provider.of<ThemeModel>(context, listen: false).theme);
-          print('Provider.of<ThemeModel>(context, listen: false).theme');
           return MaterialApp(
             theme: ThemeData(
               brightness: Brightness.light, //明暗模式为暗色
@@ -36,6 +33,7 @@ class MyApp extends StatelessWidget {
               "/": (context) => HomeRoute(),
               "login": (context) => LoginRoute(),
               "register": (context) => RegisterRoute(),
+              "listView": (context) => ListContainer(),
             //   "themes": (context) => ThemeChangeRoute(),
             },
           );

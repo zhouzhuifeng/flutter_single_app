@@ -29,8 +29,7 @@ class Global {
     WidgetsFlutterBinding.ensureInitialized();
     _prefs = await SharedPreferences.getInstance();
     var _profile = _prefs.getString("profile");
-    print(profile);
-    print('---------');
+  
     if (_profile != null) {
       try {
         profile = Profile.fromJson(jsonDecode(_profile));

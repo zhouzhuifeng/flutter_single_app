@@ -1,8 +1,10 @@
 # flutter_single_app
+###源码地址
+[源码地址](https://gitee.com/zhouzp530/flutter.git)
 
 ### 开发工具
 
- `Visual studio`
+`Visual studio`
 
 ### 创建一个项目
 
@@ -10,23 +12,24 @@
 
 ### 启动项目
 
- `flutter run`
+`flutter run`
+
 ### 打包 Android apk
 
- `flutter build apk`
+`flutter build apk`
 
 ### 新建目录
 
-* `common` 一些工具类，如通用方法类、网络接口类、保存全局变量的静态类等
-* `models Json` 文件对应的 `Dart Model` 类会在此目录下
-* `states` 保存 `APP` 中需要跨组件共享的状态类
-* `pages` 存放所有路由页面类
-* `widgets APP` 内封装的一些 `Widget` 组件都在该目录下
+-   `common` 一些工具类，如通用方法类、网络接口类、保存全局变量的静态类等
+-   `models Json` 文件对应的 `Dart Model` 类会在此目录下
+-   `states` 保存 `APP` 中需要跨组件共享的状态类
+-   `pages` 存放所有路由页面类
+-   `widgets APP` 内封装的一些 `Widget` 组件都在该目录下
 
-#### flutter2.0   打包apk 、连接手机调试报错
+#### flutter2.0 打包 apk 、连接手机调试报错
 
-* 下载 `gradle-6.7-all.zip`文件到本地([下载地址](https://services.gradle.org/distributions/))，这里用` 6.7-all` 版本，我这里放在D:\gradle\gradle-6.7-all.zip
-* 打开 `android\gradle\wrapper\gradle-wrapper.properties` 文件，修改 `distributionUrl=https\://services.gradle.org/distributions/gradle-6.7-all.zip` 为 `distributionUrl=file\:///D:/gradle/gradle-6.7-all.zip`
+-   下载 `gradle-6.7-all.zip`文件到本地([下载地址](https://services.gradle.org/distributions/))，这里用` 6.7-all` 版本，我这里放在 D:\gradle\gradle-6.7-all.zip
+-   打开 `android\gradle\wrapper\gradle-wrapper.properties` 文件，修改 `distributionUrl=https\://services.gradle.org/distributions/gradle-6.7-all.zip` 为 `distributionUrl=file\:///D:/gradle/gradle-6.7-all.zip`
 
 ### flutter 配置文件
 
@@ -34,7 +37,7 @@
 
 列如静态资源都放在 assets 文件里, 在 pubspec.yaml 配置如下
 
-``` yaml
+```yaml
 flutter:
   assets:
 
@@ -55,7 +58,7 @@ flutter:
 
 [futter 包地址](https://pub.dev/packages?q=english_words)
 
-``` yaml
+```yaml
 dependencies:
   flutter:
     sdk: flutter
@@ -72,7 +75,7 @@ dependencies:
 
 `date_format` 包引用
 
-``` dart
+```dart
 import 'package:date_format/date_format.dart';
 print(formatDate(DateTime(1989, 02, 21), [yyyy, '-', mm, '-', dd]));
 ```
@@ -81,7 +84,7 @@ print(formatDate(DateTime(1989, 02, 21), [yyyy, '-', mm, '-', dd]));
 
 #### 依赖
 
-``` yaml
+```yaml
 dependencies:
     # Your other regular dependencies here
     json_annotation: ^4.0.0
@@ -102,7 +105,7 @@ dev_dependencies:
 
 ### flutter 入口
 
-``` dart
+```dart
 
   //Material apps
   Widget build(BuildContext context) {
@@ -183,10 +186,10 @@ new Text(
 
 State 初始化时会依次执行 ：构造方法 -> initState -> didChangeDependencies -> build，随后完成页面渲染。
 
-*   构造方法是 State 生命周期的起点，Flutter 会通过调用 StatefulWidget.createState() 来创建一个 State。我们可以通过构造方法，来接收父 Widget 传递的初始化 UI 配置数据。这些配置数据，决 定了 Widget 最初的呈现效果。
-*   initState，会在 State 对象被插入视图树的时候调用。这个函数在 State 的生命周期中只会被调用一次，所以我们可以在这里做一些初 始化工作，比如为状态变量设定默认值。
-*   didChangeDependencies 则用来专门处理 State 对象依赖关系变化，会 在 initState() 调用结束后，被 Flutter 调用。
-*   build，作用是构建视图。经过以上步骤，Framework 认为 State 已经 准备好了，于是调用 build。我们需要在这个函数中，根据父 Widget 传递过来的初始化配置数据，以及 State 的当前状态，创建一个 Widget 然后返回
+-   构造方法是 State 生命周期的起点，Flutter 会通过调用 StatefulWidget.createState() 来创建一个 State。我们可以通过构造方法，来接收父 Widget 传递的初始化 UI 配置数据。这些配置数据，决 定了 Widget 最初的呈现效果。
+-   initState，会在 State 对象被插入视图树的时候调用。这个函数在 State 的生命周期中只会被调用一次，所以我们可以在这里做一些初 始化工作，比如为状态变量设定默认值。
+-   didChangeDependencies 则用来专门处理 State 对象依赖关系变化，会 在 initState() 调用结束后，被 Flutter 调用。
+-   build，作用是构建视图。经过以上步骤，Framework 认为 State 已经 准备好了，于是调用 build。我们需要在这个函数中，根据父 Widget 传递过来的初始化配置数据，以及 State 的当前状态，创建一个 Widget 然后返回
 
     | 方法名                | 功能                                   | 调用时机                                | 调用次数 |
     | --------------------- | -------------------------------------- | --------------------------------------- | -------- |
@@ -199,11 +202,20 @@ State 初始化时会依次执行 ：构造方法 -> initState -> didChangeDepen
     | deactivate            | 组件被移除                             | 组件不可视                              | >=1      |
     | dispose               | 组件被销毁                             | 组件被永久移除                          | 1        |
 
+### 主题色
+
+#### 继承主题色
+
+```dart
+//通过 Theme.of(context) 对象获取需要的颜色
+Theme.of(context).primaryColor
+```
+
 #### 按钮控件
 
 Flutter 提供了三个基本的按 钮控件，即 FloatingActionButton、FlatButton 和 RaisedButton。
 
-``` dart
+```dart
 FloatingActionButton(onPressed: () => print('FloatingActionButton pressed'),child: Text('Btn'),);
 TextButton(onPressed: () => print('TextButton pressed'),child: Text('Btn'),);
 ElevatedButton(onPressed: () => print('RaisedButton pressed'),child:Text('Btn'),);
@@ -214,7 +226,7 @@ ElevatedButton(onPressed: () => print('RaisedButton pressed'),child:Text('Btn'),
 
 #### 设备的宽高
 
-``` dart
+```dart
 MediaQuery.of(context).size.width
 MediaQuery.of(context).size.height
 ```
@@ -224,9 +236,9 @@ MediaQuery.of(context).size.height
 多子 `Widget` 布局： `Row` 、 `Column` 与 `Expanded` ( 主轴： `mainAxisAlignment` 与 纵轴： `crossAxisAlignment` 。)
 层叠 `Widget` 布局 ： `Stack` 与 `Positioned`
 
-*   `Stack`容器与前端中的绝对定位类似，`Stack`控件允许其子 Widget 按照创建的先后顺序进行层叠摆放，而 `Positioned`控件则用来控制这些子`Widget`的摆放位置。需要注意的是， `Positioned`控件只能在`Stack`中使用，在其他容器中使用会报错。
+-   `Stack`容器与前端中的绝对定位类似，`Stack`控件允许其子 Widget 按照创建的先后顺序进行层叠摆放，而 `Positioned`控件则用来控制这些子`Widget`的摆放位置。需要注意的是， `Positioned`控件只能在`Stack`中使用，在其他容器中使用会报错。
 
-``` dart
+```dart
  Stack(
     children: <Widget>[
       Container(color: Colors.pink, width: 300, height: 300), //黄色容器
@@ -249,7 +261,7 @@ MediaQuery.of(context).size.height
 
 `
 
-``` dart
+```dart
   Text(
   'text',
       // 控制超出一行 ...
@@ -313,11 +325,44 @@ MediaQuery.of(context).size.height
         semanticsLabel: 'text demo',
         textWidthBasis: TextWidthBasis.longestLine,
       )
- ```
+```
+
+#### ConstrainedBox
+
+`ConstrainedBox` 用于对子组件添加额外的约束
+
+```dart
+// 实现一个最小高度为50，宽度尽可能大的红色容器。
+ConstrainedBox(
+  constraints: BoxConstraints(
+    minWidth: double.infinity, //宽度尽可能大
+    minHeight: 50.0 //最小高度为50像素
+  ),
+  child: Container(
+      height: 5.0,
+      child: redBox
+  ),
+)
+```
+
+#### BoxDecoration
+
+```dart
+BoxDecoration({
+  Color color, //颜色
+  DecorationImage image,//图片
+  BoxBorder border, //边框
+  BorderRadiusGeometry borderRadius, //圆角
+  List<BoxShadow> boxShadow, //阴影,可以指定多个
+  Gradient gradient, //渐变
+  BlendMode backgroundBlendMode, //背景混合模式
+  BoxShape shape = BoxShape.rectangle, //形状
+})
+```
 
 #### Container
 
-``` dart
+```dart
 Container(
      child: Text('Container（容器）在UI框架中是一个很常见的概念，Flutter也不例外。'),
      padding: EdgeInsets.all(18.0), // 内边距
@@ -330,7 +375,10 @@ Container(
           center: Alignment.topLeft,
           radius: .98
       ),
-      boxShadow: [ //卡片阴影
+      // 圆角
+      borderRadius: BorderRadius.circular(10.0), // 圆角边框
+      //卡片阴影
+      boxShadow: [ /
         BoxShadow(
             color: Colors.black54,
             offset: Offset(2.0, 2.0),
@@ -351,11 +399,11 @@ Container(
       borderRadius: BorderRadius.circular(10.0), // 圆角边框
      ),
    )
-````
+```
 
 #### SingleChildScrollView 给内容添加滚动
 
-``` dart
+```dart
 SingleChildScrollView(
         child: Container(
             padding: EdgeInsets.all(20.0),
@@ -373,7 +421,7 @@ SingleChildScrollView(
 
 #### Padding
 
-``` dart
+```dart
 Container(
   Padding(
       // padding: EdgeInsets.all(10),
@@ -386,7 +434,7 @@ Container(
 
 Wrap 是一个可以使子控件自动换行的控件，默认的方向是水平的
 
-``` dart
+```dart
  Wrap({
     Key key,
     this.direction = Axis.horizontal,   //排列方向，默认水平方向排列
@@ -403,7 +451,7 @@ Wrap 是一个可以使子控件自动换行的控件，默认的方向是水平
 
 #### Align
 
-``` dart
+```dart
 Align({
     Key key,
     this.alignment = Alignment.center,
@@ -424,7 +472,7 @@ Align({
 
 #### border
 
-``` dart
+```dart
 // 4边框
 Container(
  decoration: BoxDecoration(
@@ -451,7 +499,7 @@ Container(
 
 #### button
 
-``` dart
+```dart
 TextButton(
       child: Text("TextButton按钮"),
       //添加一个点击事件
@@ -507,9 +555,37 @@ TextButton(
     );
 ```
 
+#### 圆形头像
+
+```dart
+
+new ClipOval(
+    child: Image.asset("assets/images/home/xingbiao.png",fit: BoxFit.fill)),
+
+CircleAvatar(
+    radius: 36.0,
+    backgroundImage: AssetImage(
+      "assets/images/home/xingbiao.png",
+    ),
+
+
+Container(
+    width: 72.0,
+    height: 72.0,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      image: DecorationImage(
+        image: AssetImage(
+          "assets/images/home/xingbiao.png",
+        ),
+      ),
+    ),
+
+```
+
 #### ClipRRect 用于图片倒角
 
-``` dart
+```dart
 ClipRRect(
   borderRadius: BorderRadius.circular(8.0), //图片倒圆角
   child: Image.asset("images/zz.png", width: 80, height: 80))
@@ -517,9 +593,23 @@ ClipRRect(
 
 ### ListView
 
+```dart
+ListView({
+  Axis scrollDirection = Axis.vertical, //列表的滚动方向
+  ScrollController controller, // 控制器，与列表滚动相关，比如监听列表的滚动事件
+  ScrollPhysics physics, //列表滚动至边缘后继续拖动的物理效果
+  bool shrinkWrap = false, //该属性将决定列表的长度是否仅包裹其内容的长度
+  EdgeInsetsGeometry padding, //列表内边距
+  this.itemExtent, //子元素长度
+  double cacheExtent, // 预渲染区域长度，ListView会在其可视区域的两边留一个cacheExtent长度的区域作为预渲染区域
+  List<Widget> children = const <Widget>[],
+})
+
+```
+
 静态子项
 
-``` dart
+```dart
 ListView(
    scrollDirection: Axis.horizontal,
    itemExtent: 80,//item延展尺寸(宽度)
@@ -538,10 +628,10 @@ ListView(
 
 适用于子 Widget 比较 多的场景。这个构造函数有两个关键参数
 
-*   itemBuilder，是列表项的创建方法。当列表滚动到相应位置时， ListView 会调用该方法创建对应的子 Widget。
-*   itemCount，表示列表项的数量，如果为空，则表示 ListView 为无限 列表。
+-   itemBuilder，是列表项的创建方法。当列表滚动到相应位置时， ListView 会调用该方法创建对应的子 Widget。
+-   itemCount，表示列表项的数量，如果为空，则表示 ListView 为无限 列表。
 
-``` dart
+```dart
 ListView.builder( itemCount: 100, //元素个数
 itemExtent: 50.0, //列表项高度
 itemBuilder: (BuildContext context, int index) => ListTile(title: Text("title $index"), subtitle: Text("body $index")) );
@@ -549,7 +639,7 @@ itemBuilder: (BuildContext context, int index) => ListTile(title: Text("title $i
 
 #### ListView.separated 分割线
 
-``` dart
+```dart
  ListView.separated(
       itemCount: 100,
       separatorBuilder: (BuildContext context, int index) => index %2 == 0
@@ -561,9 +651,108 @@ itemBuilder: (BuildContext context, int index) => ListTile(title: Text("title $i
           subtitle: Text("body $index")) //创建子Widget  )
 ```
 
+### 导航 Tabs
+
+#### 底部导航
+
+```dart
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('ListContainer')),
+      body: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          body: TabBarView(
+            children: [
+              StaticList(),
+              ScrollList(),
+            ],
+          ),
+          bottomNavigationBar: TabBar(
+            tabs: [
+              Tab(
+                text: 'Listview',
+              ),
+              Tab(
+                text: 'Scrollview',
+              ),
+            ],
+            onTap: (i) => print('$i --- onTap'),
+            unselectedLabelColor: Colors.blueGrey,
+            // labelColor: color,
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorColor: Colors.red,
+          ),
+        ),
+      ),
+    );
+  }
+
+```
+
+#### 顶部部导航
+
+```dart
+class ListContainer extends StatefulWidget {
+  @override
+  _ListContainer createState() => _ListContainer();
+}
+
+class _ListContainer extends State<ListContainer>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController; //需要定义一个Controller
+  List tabs = [
+    "ListView",
+    "ScrollView",
+  ];
+  @override
+  void initState() {
+    super.initState();
+    // 创建Controller
+    _tabController = TabController(length: tabs.length, vsync: this);
+    _tabController.addListener(() {
+      //监听滑动或者点击
+      print(_tabController.index);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('ListContainer'),
+        bottom: TabBar(
+            controller: _tabController,
+            tabs: tabs.map((e) => Tab(text: e)).toList()),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          StaticList(),
+          ScrollList(),
+        ],
+      ),
+    );
+  }
+}
+
+```
+
+#### Tab
+
+```dart
+ Tab({
+  Key key,
+  this.text, // 菜单文本
+  this.icon, // 菜单图标
+  this.child, // 自定义组件样式
+})
+```
+
 ### MaterialApp
 
-``` dartonGenerateRoute
+```dart
 MaterialApp({
   Key key,
   title = '', // 设备用于为用户识别应用程序的单行描述
@@ -594,7 +783,7 @@ MaterialApp({
 
 ### Scaffold
 
-``` dart
+```dart
 Scaffold({
   key,
   appBar, // 标题栏
@@ -612,18 +801,33 @@ Scaffold({
   primary = true,// Scaffold是否显示在页面的顶
 ```
 
+### AppBar
+
+```dart
+AppBar({
+  Key key,
+  this.leading, //导航栏最左侧Widget，常见为抽屉菜单按钮或返回按钮。
+  this.automaticallyImplyLeading = true, //如果leading为null，是否自动实现默认的leading按钮
+  this.title,// 页面标题
+  this.actions, // 导航栏右侧菜单
+  this.bottom, // 导航栏底部菜单，通常为Tab按钮组
+  this.elevation = 4.0, // 导航栏阴影
+  this.centerTitle, //标题是否居中
+  this.backgroundColor,
+  ...   //其它属性见源码注释
+})
+```
+
 #### flutter 用户交互事件
 
-*   第一类是原始的指针事件（Pointer Event），即原生开发中常见的 触摸事件，表示屏幕上触摸（或鼠标、手写笔）行为触发的位移行 为；
+-   第一类是原始的指针事件（Pointer Event），即原生开发中常见的 触摸事件，表示屏幕上触摸（或鼠标、手写笔）行为触发的位移行 为；
 
     -   手指接触屏幕 `PointerDownEvent`
     -   手指在屏幕上移动 `PointerMoveEvent`
     -   手指抬起 `PointerUpEvent`
     -   触摸取消 `PointerCancelEvent`
 
-    
-
-``` dart
+````dart
     Listener(
                child: Container(
                  color: Colors.red, //背景色红色
@@ -689,7 +893,7 @@ Stack(
         ),
       ),
     );
-```
+````
 
 ### 组件传递数据 InheritedWidget、Notification、EventBus
 
@@ -706,7 +910,7 @@ Stack(
 
 InheritedWidget 是 Flutter 中的一个功能型 Widget，适用于在 Widget 树中共 享数据的场景。通过它，我们可以高效地将数据在 Widget 树中进行跨层 传递。
 
-``` dart
+```dart
 class ShareDataWidget extends InheritedWidget {
   ShareDataWidget({@required this.data, Widget child}) : super(child: child);
   final int data; //需要在子树中共享的数据，保存点击次数
@@ -782,7 +986,7 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
 
 通知（Notification）是 `Flutter` 中一个重要的机制，在 `widget` 树中，每一个节点都可以分发通知，通知会沿着当前节点向上传递，所有父节点都可以通过 `NotificationListener` 来监听通知。 `Flutter` 中将这种由子向父的传递通知的机制称为通知冒泡（Notification Bubbling）。通知冒泡和用户触摸事件冒泡是相似的，但有一点不同：通知冒泡可以中止，但用户触摸事件不行
 
-``` dart
+```dart
 class CustomNotification extends Notification {
   CustomNotification(this.msg);
   final String msg;
@@ -828,7 +1032,7 @@ class _NotificationState extends State<NotificationWidget> {
 
 事件总线是在 Flutter 中实现跨组件通信的机制。它遵循发布/订阅模式， 允许订阅者订阅事件，当发布者触发事件时，订阅者和发布者之间可以 通过事件进行交互。发布者和订阅者之间无需有父子关系，甚至非 Widget 对象也可以发布/订阅
 
-``` dart
+```dart
 import 'package:event_bus/event_bus.dart';
 import 'dart:async';
 class CustomEvent {
@@ -884,12 +1088,12 @@ class SecondPage extends StatelessWidget {
 
 ### 状态管理 Provider
 
-*   `Provider` 的升级版 `ChangeNotifierProvider` 为子 `Widget` 提供读的 能力，还要提供写的能力，
-*   如果只需要为子 `Widget` 提供读能力，直接使 用 `Provider` 即可。
-*   `MultiProvider` 实现多个数据资源的共享
-*   `notifyListeners()` //通知听众刷新
+-   `Provider` 的升级版 `ChangeNotifierProvider` 为子 `Widget` 提供读的 能力，还要提供写的能力，
+-   如果只需要为子 `Widget` 提供读能力，直接使 用 `Provider` 即可。
+-   `MultiProvider` 实现多个数据资源的共享
+-   `notifyListeners()` //通知听众刷新
 
-``` dart
+```dart
 //单状态
 Provider(
   create: (_) => MyModel()，
@@ -914,7 +1118,7 @@ MultiProvider(
 
 `Provider` 可以精确地控制 UI 刷新粒度，而 这一切是基于 `Consumer` 实现的。 `Consumer` 使用了 `Builder` 模式创建 `UI` ， 收到更新通知就会通过 `builder` 重新构建 `Widget` ，不会更新 `builder` 中的 child。
 
-``` dart
+```dart
 class CounterModel with ChangeNotifier {
   int _count = 0;
   int get counter => _count;
@@ -975,14 +1179,14 @@ class ConsumerTabPage2 extends StatelessWidget {
 
 读取一个值最简单的方式就是使用 BuildContext 上的扩展属性(由 provider 注入)。
 
-*   context.watch<T>()， 一方法使得 widget 能够监听泛型 T 上发生的改变。
-*   context.read<T>()，直接返回 T，不会监听改变。
-*   context.select<T， R>(R cb(T value))，允许 widget 只监听 T 上的一部分(R)。
-*   或者使用 Provider.of<T>(context) 这一静态方法，它的表现类似 watch ，而在你为 listen 参数传入 false 时(如 Provider.of<T>(context，listen: false) )，它的表现类似于
+-   context.watch<T>()， 一方法使得 widget 能够监听泛型 T 上发生的改变。
+-   context.read<T>()，直接返回 T，不会监听改变。
+-   context.select<T， R>(R cb(T value))，允许 widget 只监听 T 上的一部分(R)。
+-   或者使用 Provider.of<T>(context) 这一静态方法，它的表现类似 watch ，而在你为 listen 参数传入 false 时(如 Provider.of<T>(context，listen: false) )，它的表现类似于
 
     read。
 
-``` dart
+```dart
 
 // 1. 通过 Provider.of<T>(context)
   Provider.of<UserModel>(context, listen: false).user
@@ -995,21 +1199,21 @@ Consumer<CounterModel>(
           onPressed: counter.increment,
           child: child,
         ),
- 
+
 ```
 
 ### 路由管理
 
 在 Flutter 中，页面之间的跳转是通过 Route 和 Navigator 来管理的：
 
-*   Route 是页面的抽象，主要负责创建对应的界面，接收参数，响应 Navigator 打开和关闭；
-*   Navigator 则会维护一个路由栈管理 Route，Route 打开即入栈， Route 关闭即出栈，还可以直接替换栈内的某一个 Route。
+-   Route 是页面的抽象，主要负责创建对应的界面，接收参数，响应 Navigator 打开和关闭；
+-   Navigator 则会维护一个路由栈管理 Route，Route 打开即入栈， Route 关闭即出栈，还可以直接替换栈内的某一个 Route。
 
 而根据是否需要提前注册页面标识符，Flutter 中的路由管理可以分为两 种方式：
 
 #### 路由生成钩子(构建路由才生效)
 
-``` dart
+```dart
 MaterialApp(
   ... //省略无关代码
   onGenerateRoute:(RouteSettings settings){
@@ -1027,7 +1231,7 @@ MaterialApp(
 
     -   类中第一个参数为 context 的静态方法都对应一个 Navigator 的实例方法， 比如
 
-``` dart
+```dart
 // Navigator.push(BuildContext context, Route route)等价于Navigator.of(context).push(Route route)
  Navigator.push(context,MaterialPageRoute(builder: (context) => SecondPage()))
  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProviderTabPage2())
@@ -1036,7 +1240,7 @@ MaterialApp(
 
 #### 命名路由。需要提前注册页面标识符，在页面切换时通过标识符直 接打开新的路由。
 
-``` dart
+```dart
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -1061,7 +1265,7 @@ class MyApp extends StatelessWidget {
 
 #### 构建路由传参，参数回传
 
-``` dart
+```dart
 
  Navigator.push<String>(context,  MaterialPageRoute(builder: (BuildContext context){
     return new ThirdPage(title:"请输入昵称");//传入参数title
@@ -1077,7 +1281,7 @@ class MyApp extends StatelessWidget {
 
 #### 命名路由 传参，回调参数回传
 
-``` dart
+```dart
 
  ElevatedButton(
        child: Text('命名路由（参数&回调）'),
@@ -1115,17 +1319,42 @@ class ThirdPage extends StatelessWidget {
 
 #### 路由返回携带一个参数
 
-``` dart
+```dart
  Navigator.pop(context, "Hi")
 
+```
+
+### 适配不同分辨率的手机
+
+#### OrientationBuilder 或 MediaQueryData 获取手机是横屏还是竖屏
+
+```dart
+@override Widget build(BuildContext context) {
+  //orientation =landscape横屏,portrait 竖 屏
+  return Scaffold( //使用OrientationBuilder的builder模式感知屏幕旋转
+        body: OrientationBuilder( builder: (context, orientation) { //根据屏幕旋转方向返回不同布局行为
+            return orientation == Orientation.portrait ? _buildVerticalLayout() : _buildHorizontalLayout(); }, ),
+         );
+ }
+
+ //使用MediaQueryData提供的orientation方法：
+ if(MediaQuery.of(context).orientation == Orientation.portrait) {
+   //dosth
+ }
+```
+
+#### SystemChrome 固定手机的专项（横屏或竖屏）
+
+```dart
+SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 ```
 
 ### dart
 
 #### 类
 
-``` dart
-<!-- 类 -->
+```dart
+// 类
 class Point {
   num x, y;
    static num factor = 0;
@@ -1148,7 +1377,7 @@ class Point {
  }
    var p = Point.bottom(100); p.printInfo(); // 输出(100,0,0)
 
-<!-- 类继承 -->
+// 类继承
 1.extends （继承父类）
 
 2. implements （接口实现）  // 成员变量,函数需要重新声明
@@ -1177,13 +1406,13 @@ const 是已知的具体常量，final 是未知的，运算后才知道
 
 #### 字符串中加入变量
 
-``` dart
+```dart
 print('${this.x}${this.y}${this.z}') 简写 print('($x,$y,$z)')
 ```
 
 #### 多行字符串拼接 '''
 
-``` dart
+```dart
 '''
 今天不错
 年轻人
@@ -1192,7 +1421,7 @@ print('${this.x}${this.y}${this.z}') 简写 print('($x,$y,$z)')
 
 #### dart 经典列子
 
-``` dart
+```dart
 
 class Meta {
   double price;
@@ -1227,14 +1456,14 @@ class ShoppingCart extends Meta with PrintHelper{
   //??运算符表示为code不为null，则用原值，否则使用默认值"没有"
   @override
   getInfo() => '''
-购物车信息:
------------------------------
-  用户名: $name
-  优惠码: ${code??"没有"}
-  总价: $price
-  Date: $date
------------------------------
-''';
+     购物车信息:
+     -----------------------------
+       用户名: $name
+       优惠码: ${code??"没有"}
+       总价: $price
+       Date: $date
+     -----------------------------
+     ''';
 }
 
 void main() {

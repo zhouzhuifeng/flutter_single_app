@@ -11,9 +11,12 @@ class HomeRoute extends StatefulWidget {
 }
 
 class _HomeRouteState extends State<HomeRoute> {
+  get controller => null;
+
   @override
   Widget build(BuildContext context) {
     UserModel userModel = Provider.of<UserModel>(context);
+    Color color = Theme.of(context).primaryColor;
     if (!userModel.isLogin) {
       return LoginRoute();
     } else {
@@ -21,13 +24,13 @@ class _HomeRouteState extends State<HomeRoute> {
         appBar: AppBar(
           title: Text('可惜没有如果'),
         ),
-        body: _buildBody(),
+        body: _buildBody(color),
         drawer: MyDrawer(), //抽屉菜单
       );
     }
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(color) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -56,8 +59,9 @@ class _HomeRouteState extends State<HomeRoute> {
               text: "Controller",
             )
           ],
+          onTap: (i) => print('$i --- onTap'),
           unselectedLabelColor: Colors.blueGrey,
-          labelColor: Colors.blue,
+          labelColor: color,
           indicatorSize: TabBarIndicatorSize.label,
           indicatorColor: Colors.red,
         ),

@@ -1,17 +1,16 @@
 import '../../import_common.dart';
+import 'widget_details.dart';
 
 class HomeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    GestureDetector homeIcons(IconData icon, String label, String routeName) {
+    GestureDetector homeIcons(IconData icon, String label, routeName) {
       Color color = Theme.of(context).primaryColor;
       return GestureDetector(
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(
-                color: Colors.indigoAccent[100],
-                width: 1,
-                style: BorderStyle.solid),
+            border:
+                Border.all(color: color, width: 1, style: BorderStyle.solid),
             borderRadius: BorderRadius.circular(10.0),
           ), // 圆
           width: 80.0,
@@ -34,13 +33,21 @@ class HomeList extends StatelessWidget {
             ],
           ),
         ),
-        onTap: () => print("Tap $routeName"),
+        onTap: () {
+          List arr = ['ListView'];
+          if (arr.contains(label)) {
+            return Navigator.pushNamed(context, 'listView');
+          }
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Details(label)));
+        },
       );
     }
 
     buildRowChildren() {
       const List list = [
-        {'label': 'container', 'routeName': '', 'icon': Icons.alarm},
+        {'label': 'ListView', 'routeName': 'listView', 'icon': Icons.apps},
+        {'label': 'Container', 'routeName': '', 'icon': Icons.alarm},
         {'label': 'Text', 'routeName': '', 'icon': Icons.account_box},
         {'label': 'Center', 'routeName': '', 'icon': Icons.ac_unit},
         {'label': 'Flex', 'routeName': '', 'icon': Icons.access_alarms_rounded},
