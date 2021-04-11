@@ -12,6 +12,8 @@ class _ListContainer extends State<ListContainer>
   TabController _tabController; //需要定义一个Controller
   List tabs = [
     "ListView",
+    "ListView.builder",
+    "ListView.Separated",
     "ScrollView",
   ];
   @override
@@ -31,16 +33,25 @@ class _ListContainer extends State<ListContainer>
       appBar: AppBar(
         title: Text('ListContainer'),
         bottom: TabBar(
+            isScrollable: true,
             controller: _tabController,
             tabs: tabs.map((e) => Tab(text: e)).toList()),
       ),
       body: TabBarView(
         controller: _tabController,
         children: [
-          StaticList(),
+          StaticList(1),
+          StaticList(2),
+          StaticList(3),
           ScrollList(),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose(); // 销毁控制器
+    super.dispose();
   }
 }

@@ -27,18 +27,16 @@ class _LoginRouteState extends State<LoginRoute> {
 
   @override
   Widget build(BuildContext context) {
-    final h = MediaQuery.of(context).size.height;
+    // final h = MediaQuery.of(context).size.height;
     return Scaffold(
+        backgroundColor: hex('#303c42'),
         appBar: AppBar(
             title: Text('登录'),
             automaticallyImplyLeading: false,
             centerTitle: true),
         body: SingleChildScrollView(
-            child: ConstrainedBox(
-          constraints: BoxConstraints(minHeight: h - 60),
           child: Container(
             padding: EdgeInsets.all(16.0),
-            color: hex('#303c42'),
             child: Form(
                 key: _formKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction, //开启自动校验
@@ -180,7 +178,7 @@ class _LoginRouteState extends State<LoginRoute> {
                   ),
                 )),
           ),
-        )));
+        ));
   }
 
   void _onLogin() async {

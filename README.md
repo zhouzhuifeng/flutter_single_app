@@ -1,6 +1,4 @@
 # flutter_single_app
-###源码地址
-[源码地址](https://gitee.com/zhouzp530/flutter.git)
 
 ### 开发工具
 
@@ -209,6 +207,25 @@ State 初始化时会依次执行 ：构造方法 -> initState -> didChangeDepen
 ```dart
 //通过 Theme.of(context) 对象获取需要的颜色
 Theme.of(context).primaryColor
+```
+
+#### 显示隐藏元素 Offstage
+`false` 显示，`true` 隐藏
+```dart
+ Offstage(
+              offstage: !isToTop, //这里控制 true  false 布尔值
+              child: FloatingActionButton(
+                onPressed: (isToTop
+                    ? () {
+                        if (isToTop) {
+                          _controller.animateTo(.0,
+                              duration: Duration(milliseconds: 200),
+                              curve: Curves.ease); //做一个滚动到顶部的动画
+                        }
+                      }
+                    : null),
+                child: Text("Top"),
+              )),
 ```
 
 #### 按钮控件
@@ -600,8 +617,10 @@ ListView({
   ScrollPhysics physics, //列表滚动至边缘后继续拖动的物理效果
   bool shrinkWrap = false, //该属性将决定列表的长度是否仅包裹其内容的长度
   EdgeInsetsGeometry padding, //列表内边距
-  this.itemExtent, //子元素长度
-  double cacheExtent, // 预渲染区域长度，ListView会在其可视区域的两边留一个cacheExtent长度的区域作为预渲染区域
+  double    itemExtent, //子元素长度 length
+  double    cacheExtent, // 预渲染区域长度，ListView会在其可视区域的两边留一个cacheExtent长度的区域作为预渲染区域
+  addAutomaticKeepAlives： true//该属性表示是否将列表项（子组件）包裹在AutomaticKeepAlive 组件中；
+  addRepaintBoundaries：//该属性表示是否将列表项（子组件）包裹在RepaintBoundary组件中
   List<Widget> children = const <Widget>[],
 })
 
@@ -619,7 +638,7 @@ ListView(
        ListTile(leading: Icon(Icons.map), title: Text('Map')),
        ListTile(leading: Icon(Icons.mail), title: Text('Mail')),
        ListTile(leading: Icon(Icons.message), title: Text('Message')),
-       // 或者自己的wiget     Container(color: Colors.red),
+       // 或者自己的widget     Container(color: Colors.red),
     ]
 )
 ```
@@ -631,11 +650,12 @@ ListView(
 -   itemBuilder，是列表项的创建方法。当列表滚动到相应位置时， ListView 会调用该方法创建对应的子 Widget。
 -   itemCount，表示列表项的数量，如果为空，则表示 ListView 为无限 列表。
 
-```dart
-ListView.builder( itemCount: 100, //元素个数
-itemExtent: 50.0, //列表项高度
-itemBuilder: (BuildContext context, int index) => ListTile(title: Text("title $index"), subtitle: Text("body $index")) );
-```
+````dart
+ListView.builder(
+    itemCount: 100, //元素个数
+    itemExtent: 50.0, //列表项高度
+    itemBuilder: (BuildContext context, int index) => ListTile(title: Text("title     $index"), subtitle: Text("body $index")) );
+    ```
 
 #### ListView.separated 分割线
 
@@ -649,7 +669,7 @@ itemBuilder: (BuildContext context, int index) => ListTile(title: Text("title $i
       itemBuilder: (BuildContext context, int index) => ListTile(
           title: Text("title $index"),
           subtitle: Text("body $index")) //创建子Widget  )
-```
+````
 
 ### 导航 Tabs
 
@@ -797,7 +817,7 @@ Scaffold({
   bottomNavigationBar,// 底部导航栏。
   bottomSheet, // 显示在底部的工具栏
   backgroundColor,// 内容的背景颜色
-  resizeToAvoidBottomPadding = true, // 控制界面内容 body 是否重新布局来避免底部被覆盖，比如当键盘显示的时候，重新布局避免被键盘盖住内容。
+  resizeToAvoidBottomInset = true, // 控制界面内容 body 是否重新布局来避免底部被覆盖，比如当键盘显示的时候，重新布局避免被键盘盖住内容。
   primary = true,// Scaffold是否显示在页面的顶
 ```
 
@@ -1114,6 +1134,33 @@ MultiProvider(
 )
 ```
 
+#### State 获取状态 （ 读取一个值）
+
+读取一个值最简单的方式就是使用 BuildContext 上的扩展属性(由 provider 注入)。
+
+-   context.watch<T>()， 一方法使得 widget 能够监听泛型 T 上发生的改变。
+-   context.read<T>()，直接返回 T，不会监听改变。
+-   context.select<T， R>(R cb(T value))，允许 widget 只监听 T 上的一部分(R)。
+-   或者使用 Provider.of<T>(context) 这一静态方法，它的表现类似 watch ，而在你为 listen 参数传入 false 时(如 Provider.of<T>(context，listen: false) )，它的表现类似于
+
+    read。
+
+```dart
+
+// 1. 通过 Provider.of<T>(context)
+  Provider.of<UserModel>(context, listen: false).user
+  Provider.of<UserModel>(context).user= 'asdfsda'
+
+// 2. 通过 buider ， builder 3个参数， context, model( porpvider<t,p>的两个类型,t，p) ，child
+Consumer<CounterModel>(
+         // builder 3个参数， context ，model，child
+        builder: (context, CounterModel counter, child) => FloatingActionButton(
+          onPressed: counter.increment,
+          child: child,
+        ),
+
+```
+
 #### Consumer
 
 `Provider` 可以精确地控制 UI 刷新粒度，而 这一切是基于 `Consumer` 实现的。 `Consumer` 使用了 `Builder` 模式创建 `UI` ， 收到更新通知就会通过 `builder` 重新构建 `Widget` ，不会更新 `builder` 中的 child。
@@ -1173,33 +1220,6 @@ class ConsumerTabPage2 extends StatelessWidget {
     );
   }
 }
-```
-
-#### State 获取状态 （ 读取一个值）
-
-读取一个值最简单的方式就是使用 BuildContext 上的扩展属性(由 provider 注入)。
-
--   context.watch<T>()， 一方法使得 widget 能够监听泛型 T 上发生的改变。
--   context.read<T>()，直接返回 T，不会监听改变。
--   context.select<T， R>(R cb(T value))，允许 widget 只监听 T 上的一部分(R)。
--   或者使用 Provider.of<T>(context) 这一静态方法，它的表现类似 watch ，而在你为 listen 参数传入 false 时(如 Provider.of<T>(context，listen: false) )，它的表现类似于
-
-    read。
-
-```dart
-
-// 1. 通过 Provider.of<T>(context)
-  Provider.of<UserModel>(context, listen: false).user
-  Provider.of<UserModel>(context).user= 'asdfsda'
-
-// 2. 通过 buider ， builder 3个参数， context, model( porpvider<t,p>的两个类型,t，p) ，child
-Consumer<CounterModel>(
-         // builder 3个参数， context ，model，child
-        builder: (context, CounterModel counter, child) => FloatingActionButton(
-          onPressed: counter.increment,
-          child: child,
-        ),
-
 ```
 
 ### 路由管理

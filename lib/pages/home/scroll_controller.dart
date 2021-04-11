@@ -12,6 +12,7 @@ class _ScrollControllerState extends State<ScrollControllerWidget> {
   void initState() {
     _controller = ScrollController();
     _controller.addListener(() {
+      print(' _controller.addListener');
       // 为控制器注册滚动监听方法
       if (_controller.offset > 1000) {
         // 如果 ListView 已经向下滚动了 1000，则启用 Top 按钮
